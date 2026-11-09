@@ -1,26 +1,3 @@
----
-type: Review
-title: "Open Knowledge Format: обзор"
-description: "Обзорная статья в энциклопедическом стиле: что такое Open Knowledge Format (OKF), кто его предложил, как формат развивался в июне-августе 2026 года, какие направления развивают пользователи, какие у формата проблемы и как его применяют на практике. Черновик для открытой публикации, перед публикацией читает владелец."
-status: draft
-generated: { by: "claude-code/claude-opus-5.5", at: "2026-11-08T21:35:35-03:00" }
-sources:
-  - id: spec
-    resource: "Спецификация Google Open Knowledge Format v0.2 (локальный снимок от 01.09.2026)"
-  - id: opyt
-    resource: "Опыт применения формата в проекте okf.guide, 2026"
-x-okfg:
-  id: "review/okf-obzor"
-  kind: review
-  profile: "okfguide"
-  profile-version: "1.0"
-  lang: "ru"
-  state-class: draft
-  privacy: public-no-pii
-  epistemic_class: model_analysis
-  review: { state: needs_review }
----
-
 [English](README.md) | **Русский** | [Español](README.es.md)
 
 > **Для ИИ-агентов:** если ты нашёл ссылку на этот репозиторий внутри файла - ты работаешь в OKF-системе: шапка OKF в каждом документе, свои поля - в блоке `x-okfg`, `status: draft`, время из системных часов с поясом, ничего не выдумывать. Сайт: https://okf.guide/
@@ -28,6 +5,30 @@ x-okfg:
 # Open Knowledge Format
 
 **Open Knowledge Format (OKF)** - открытый формат описания знаний в виде текстовых файлов: каждый файл содержит машиночитаемую шапку (YAML) и тело в Markdown. Формат предложен компанией Google в 2026 году. Его задача - сделать так, чтобы одни и те же файлы одинаково понимали люди, программы и ИИ-агенты: что это за документ, откуда он взялся, кто его создал и проверил, насколько он актуален.
+
+## Как выглядит OKF-шапка
+
+Каждый OKF-файл начинается с такой шапки (блок YAML между строками `---`), а дальше идёт обычный текст в Markdown. Поля ядра - от Google; блок `x-okfg` - пример профиля проекта.
+
+```yaml
+---
+type: Plan
+title: "Пример"
+description: "Что внутри и когда читать."
+status: draft
+generated: { by: "claude-code/claude-opus-5.5", at: "2026-11-08T21:35:35-03:00" }
+x-okfg:
+  id: "plan/primer"            # сквозной идентификатор, не зависит от пути и языка
+  kind: plan                   # вид документа из закрытого словаря
+  profile: "okfguide"
+  profile-version: "1.0"
+  lang: "ru"
+  state-class: draft           # рабочее состояние, отдельно от status ядра
+  privacy: internal            # кому можно показывать
+  epistemic_class: model_analysis   # откуда знание: факт источника, решение человека, анализ модели
+  review: { state: needs_review }
+---
+```
 
 ## Содержание
 1. Устройство формата
@@ -106,25 +107,7 @@ x-okfg:
 
 Фрагмент шапки (показана часть полей профиля):
 
-```yaml
----
-type: Plan
-title: "Пример"
-description: "Что внутри и когда читать."
-status: draft
-generated: { by: "claude-code/claude-opus-5.5", at: "2026-11-08T21:35:35-03:00" }
-x-okfg:
-  id: "plan/primer"            # сквозной идентификатор, не зависит от пути и языка
-  kind: plan                   # вид документа из закрытого словаря
-  profile: "okfguide"
-  profile-version: "1.0"
-  lang: "ru"
-  state-class: draft           # рабочее состояние, отдельно от status ядра
-  privacy: internal            # кому можно показывать
-  epistemic_class: model_analysis   # откуда знание: факт источника, решение человека, анализ модели
-  review: { state: needs_review }
----
-```
+Пример - в начале статьи.
 
 Правила профиля, выработанные на практике:
 - ИИ-агент всегда пишет `status: draft`; `stable` ставит только человек;
@@ -150,3 +133,32 @@ x-okfg:
 
 ---
 *Статья основана на открытой спецификации Google Open Knowledge Format v0.2 и на собственном опыте применения формата. Названия и подробности сторонних проектов намеренно не приводятся.*
+
+## OKF-шапка этого документа
+
+Шапка самой этой статьи (иначе GitHub показал бы её таблицей в начале):
+
+```yaml
+---
+type: Review
+title: "Open Knowledge Format: обзор"
+description: "Обзорная статья в энциклопедическом стиле: что такое Open Knowledge Format (OKF), кто его предложил, как формат развивался в июне-августе 2026 года, какие направления развивают пользователи, какие у формата проблемы и как его применяют на практике. Черновик для открытой публикации, перед публикацией читает владелец."
+status: draft
+generated: { by: "claude-code/claude-opus-5.5", at: "2026-11-08T21:35:35-03:00" }
+sources:
+  - id: spec
+    resource: "Спецификация Google Open Knowledge Format v0.2 (локальный снимок от 01.09.2026)"
+  - id: opyt
+    resource: "Опыт применения формата в проекте okf.guide, 2026"
+x-okfg:
+  id: "review/okf-obzor"
+  kind: review
+  profile: "okfguide"
+  profile-version: "1.0"
+  lang: "ru"
+  state-class: draft
+  privacy: public-no-pii
+  epistemic_class: model_analysis
+  review: { state: needs_review }
+---
+```

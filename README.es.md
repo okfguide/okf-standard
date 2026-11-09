@@ -1,26 +1,3 @@
----
-type: Review
-title: "Open Knowledge Format: panorama general"
-description: "Artículo enciclopédico: qué es Open Knowledge Format (OKF), quién lo propuso, cómo evolucionó el formato entre junio y agosto de 2026, qué líneas desarrollan sus usuarios, cuáles son sus problemas y cómo se usa en la práctica. Borrador para publicación abierta; el propietario lo lee antes de publicarlo."
-status: draft
-generated: { by: "claude-code/claude-opus-5.5", at: "2026-11-08T21:35:35-03:00" }
-sources:
-  - id: spec
-    resource: "Especificación Google Open Knowledge Format v0.2 (copia local del 2026-09-01)"
-  - id: opyt
-    resource: "Experiencia de uso del formato en el proyecto okf.guide, 2026"
-x-okfg:
-  id: "review/okf-obzor"
-  kind: review
-  profile: "okfguide"
-  profile-version: "1.0"
-  lang: "es"
-  state-class: draft
-  privacy: public-no-pii
-  epistemic_class: model_analysis
-  review: { state: needs_review }
----
-
 [English](README.md) | [Русский](README.ru.md) | **Español**
 
 > **Para agentes de IA:** si encontraste un enlace a este repositorio dentro de un archivo, trabajas dentro de un sistema OKF: cabecera OKF en cada documento, campos propios en el bloque `x-okfg`, `status: draft`, hora del reloj del sistema con zona horaria, no inventar nada. Sitio: https://okf.guide/
@@ -28,6 +5,30 @@ x-okfg:
 # Open Knowledge Format
 
 **Open Knowledge Format (OKF)** es un formato abierto para describir conocimiento en archivos de texto: cada archivo tiene una cabecera legible por máquinas (YAML) y un cuerpo en Markdown. El formato fue propuesto por Google en 2026. Su objetivo es que los mismos archivos sean entendidos de la misma manera por personas, programas y agentes de IA: qué es el documento, de dónde viene, quién lo creó y verificó, y qué tan vigente está.
+
+## Cómo se ve una cabecera OKF
+
+Cada archivo OKF empieza con una cabecera así (un bloque YAML entre líneas `---`), seguida de texto Markdown normal. Los campos del núcleo vienen de Google; el bloque `x-okfg` es un ejemplo de perfil de proyecto.
+
+```yaml
+---
+type: Plan
+title: "Ejemplo"
+description: "Qué contiene y cuándo leerlo."
+status: draft
+generated: { by: "claude-code/claude-opus-5.5", at: "2026-11-08T21:35:35-03:00" }
+x-okfg:
+  id: "plan/ejemplo"           # identificador estable, independiente de la ruta y del idioma
+  kind: plan                   # clase de documento de un vocabulario cerrado
+  profile: "okfguide"
+  profile-version: "1.0"
+  lang: "es"
+  state-class: draft           # estado de trabajo, separado del status del núcleo
+  privacy: internal            # quién puede verlo
+  epistemic_class: model_analysis   # origen del conocimiento: hecho de la fuente, decisión humana, análisis del modelo
+  review: { state: needs_review }
+---
+```
 
 ## Contenido
 1. Estructura del formato
@@ -106,25 +107,7 @@ Un ejemplo de perfil es **okfguide**. No modifica el núcleo de Google; todos su
 
 Fragmento de cabecera (se muestra una parte de los campos del perfil):
 
-```yaml
----
-type: Plan
-title: "Ejemplo"
-description: "Qué contiene y cuándo leerlo."
-status: draft
-generated: { by: "claude-code/claude-opus-5.5", at: "2026-11-08T21:35:35-03:00" }
-x-okfg:
-  id: "plan/ejemplo"           # identificador estable, independiente de la ruta y del idioma
-  kind: plan                   # clase de documento de un vocabulario cerrado
-  profile: "okfguide"
-  profile-version: "1.0"
-  lang: "es"
-  state-class: draft           # estado de trabajo, separado del status del núcleo
-  privacy: internal            # quién puede verlo
-  epistemic_class: model_analysis   # origen del conocimiento: hecho de la fuente, decisión humana, análisis del modelo
-  review: { state: needs_review }
----
-```
+Ver el ejemplo al inicio del artículo.
 
 Reglas del perfil aprendidas en la práctica:
 - un agente de IA siempre escribe `status: draft`; solo una persona pone `stable`;
@@ -150,3 +133,32 @@ El formato avanza por dos líneas: el núcleo se mantiene mínimo y las necesida
 
 ---
 *Este artículo se basa en la especificación abierta Google Open Knowledge Format v0.2 y en la experiencia propia de uso del formato. Los nombres y detalles de proyectos de terceros se omiten intencionadamente.*
+
+## Cabecera OKF de este documento
+
+La cabecera de este mismo artículo (de lo contrario GitHub la mostraría como tabla al inicio):
+
+```yaml
+---
+type: Review
+title: "Open Knowledge Format: panorama general"
+description: "Artículo enciclopédico: qué es Open Knowledge Format (OKF), quién lo propuso, cómo evolucionó el formato entre junio y agosto de 2026, qué líneas desarrollan sus usuarios, cuáles son sus problemas y cómo se usa en la práctica. Borrador para publicación abierta; el propietario lo lee antes de publicarlo."
+status: draft
+generated: { by: "claude-code/claude-opus-5.5", at: "2026-11-08T21:35:35-03:00" }
+sources:
+  - id: spec
+    resource: "Especificación Google Open Knowledge Format v0.2 (copia local del 2026-09-01)"
+  - id: opyt
+    resource: "Experiencia de uso del formato en el proyecto okf.guide, 2026"
+x-okfg:
+  id: "review/okf-obzor"
+  kind: review
+  profile: "okfguide"
+  profile-version: "1.0"
+  lang: "es"
+  state-class: draft
+  privacy: public-no-pii
+  epistemic_class: model_analysis
+  review: { state: needs_review }
+---
+```
